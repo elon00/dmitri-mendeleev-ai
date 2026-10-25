@@ -1,0 +1,54 @@
+{
+  "mcpServers": {
+    "dmitri-mendeleev-ai": {
+      "command": "cargo",
+      "args": [
+        "run",
+        "--release",
+        "--quiet"
+      ],
+      "env": {
+        "RUST_LOG": "info",
+        "TITAN_PROTOCOL": "MENDELEEV",
+        "FIPS_203_LEVEL": "ML-KEM-768",
+        "FIPS_204_LEVEL": "ML-DSA-65"
+      },
+      "tools": [
+        {
+          "name": "predict_eka_element_properties",
+          "description": "Synthesizes valence, atomic radius, electronegativity and oxide densities for unknown isotopic configurations",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "atomic_group": {
+                "type": "integer"
+              },
+              "period_number": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "atomic_group",
+              "period_number"
+            ]
+          }
+        },
+        {
+          "name": "model_periodic_electronegativity_gradient",
+          "description": "Maps periodic table trends in ionization energies, electron affinities and coordination complexes",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "element_symbol": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "element_symbol"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
